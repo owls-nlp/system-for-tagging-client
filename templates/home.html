@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+    <br>  
+    <center><h3>Система для автоматической разметки научных статей</h3></center>
+    <br>
+    <center><img src="./static/logo_bordovoe.png"></center>
+	<center>
+		<p><b>Загрузка файла</b></p>
+		<p><em>Для дальнейшей работы с приложением, пожалуйста, загрузите свою статью в формате PDF</em></p>
+		<p><em>Выберите один из указанных ниже форматов вёрстки:</em></p>
+	</center>
+    <center>	
+		<div style="display: flex; flex-direction: row; justify-content: center; ">
+			<div style="padding: 20px"><img  width="200" src="./static/format_1.jpg"><p>Формат 1</p></div>
+			<div style="padding: 20px"><img  width="200" src="./static/format_2.jpg"><p>Формат 2</p></div>
+			<div style="padding: 20px"><img  width="200" src="./static/format_3.jpg"><p>Формат 3</p></div>
+		</div>		
+		<form id="upload-form" action="{{ url_for('loaded') }}" method="POST" enctype="multipart/form-data">		
+			<p><input name="format" type="radio" value="format_1" checked> Формат 1 </p>
+			<p><input name="format" type="radio" value="format_2"> Формат 2 </p>	
+			<p><input name="format" type="radio" value="format_3"> Формат 3 </p>
+			<br>
+			<p><em>Выберите тип вашего PDF-файла:</em></p>
+			<p><input name="file_type" type="radio" value="scan"> Отсканированный PDF-документ </p>
+			<p><input name="file_type" type="radio" value="searchable" checked> Searchable PDF (документ, содержащий текстовый слой) </p>
+			<br>
+			<p><font color="#A32B3F"><b><h5>{{ error }}</h5></b></font></p>
+			<br>
+			<p id="section"><strong style="padding-right:10px">Файл:</strong><input id="file-picker" type="file" name="file" accept="application/pdf"></p>		  
+			<p></p>
+			<input type="submit" value="Загрузить" id="upload-button"> 		
+		</form> 	
+    </center>
+	
+	{% if section %}
+	<script>
+		window.onload = function(){
+        $('html, body').animate({
+                scrollTop: $('#{{ section }}').offset().top 
+            }, 500
+        );
+    }
+	</script>
+	{% endif %}	
+	
+{% endblock content %}

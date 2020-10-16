@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    <br>  
+	<center><img src="./static/logo_bordovoe.png"></center>
+    <center>
+		<form action = "/setcookie" method = "POST">
+			<p><h4>Добро пожаловать в систему для автоматической разметки научных статей!</h4></p>
+			<p><font color="#A32B3F"><b><h5>{{error}}</h5></b></font></p>
+			<p><h5>Вы не авторизованы. Пожалуйста, введите ваш токен</h5></p>
+			<p><input type = 'text' name = 'token'/></p>
+			<p><input type = 'submit' value = 'Отправить'/></p>
+      </form>
+	</center>
+
+{% endblock content %}
